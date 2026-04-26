@@ -95,7 +95,7 @@ class CodeIndexManager:
         if self._index is None:
             embedding_dim = embedding_results[0].embedding.shape[0]
             # Default to flat index for better recall - only use IVF for very large datasets
-            index_type = "ivf" if len(embedding_results) > 10000 else "flat"
+            index_type = "ivf" if len(embedding_results) > 100000 else "flat"
             self.create_index(embedding_dim, index_type)
         
         # Prepare embeddings and metadata

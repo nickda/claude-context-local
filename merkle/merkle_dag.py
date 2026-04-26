@@ -58,7 +58,7 @@ class MerkleDAG:
             '.venv', 'venv', 'env', '.env', '.direnv',
             'node_modules', '.pnpm-store', '.yarn',
             '.pytest_cache', '.mypy_cache', '.ruff_cache', '.pytype', '.ipynb_checkpoints',
-            'build', 'dist', 'out', 'public',
+            'build', 'dist', 'out', 'public', 'cdk.out',
             '.next', '.nuxt', '.svelte-kit', '.angular', '.astro', '.vite',
             '.cache', '.parcel-cache', '.turbo',
             'coverage', '.coverage', '.nyc_output',
@@ -77,7 +77,11 @@ class MerkleDAG:
             True if path should be ignored
         """
         name = path.name
-         
+
+        # Skip hidden directories (names starting with '.')
+        if name.startswith('.') and path.is_dir():
+            return True
+
         # Check exact matches and patterns
         for pattern in self.ignore_patterns:
             if pattern.startswith('*'):

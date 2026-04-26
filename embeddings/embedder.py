@@ -153,7 +153,7 @@ class CodeEmbedder:
             metadata=metadata
         )
 
-    def embed_chunks(self, chunks: List[CodeChunk], batch_size: int = 32) -> List[EmbeddingResult]:
+    def embed_chunks(self, chunks: List[CodeChunk], batch_size: int = 64) -> List[EmbeddingResult]:
         """Generate embeddings for multiple chunks with batching.
 
         Args:
